@@ -1,9 +1,9 @@
+
 module ensisa.birds {
-    requires javafx.controls;
+    requires transitive javafx.controls;
     requires javafx.fxml;
-
-    requires org.kordamp.ikonli.javafx;
-
-    opens ensisa.birds to javafx.fxml;
+    requires com.fasterxml.jackson.databind;
+    opens ensisa.birds to javafx.fxml, com.fasterxml.jackson.databind;
     exports ensisa.birds;
+    exports ensisa.birds.model;
 }
