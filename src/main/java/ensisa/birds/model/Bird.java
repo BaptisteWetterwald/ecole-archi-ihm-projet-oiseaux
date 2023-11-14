@@ -8,21 +8,21 @@ import javafx.beans.property.StringProperty;
 import javafx.scene.image.Image;
 
 public class Bird {
-    private StringProperty family = new SimpleStringProperty(this, "family", "");
-    private StringProperty genus = new SimpleStringProperty(this, "genus", "");
-    private StringProperty specie = new SimpleStringProperty(this, "specie", "");
-    private StringProperty commonName = new SimpleStringProperty(this, "commonName", "");
-    private StringProperty latinName = new SimpleStringProperty(this, "latinName", "");
-    private StringProperty description = new SimpleStringProperty(this, "description", "");
-    private StringProperty imagePath = new SimpleStringProperty(this, "imagePath", "");
+    private final StringProperty family = new SimpleStringProperty(this, "family", "");
+    private final StringProperty genus = new SimpleStringProperty(this, "genus", "");
+    private final StringProperty specie = new SimpleStringProperty(this, "specie", "");
+    private final StringProperty commonName = new SimpleStringProperty(this, "commonName", "");
+    private final StringProperty latinName = new SimpleStringProperty(this, "latinName", "");
+    private final StringProperty description = new SimpleStringProperty(this, "description", "");
+    private final StringProperty imagePath = new SimpleStringProperty(this, "imagePath", "");
 
     @JsonIgnore
-    private Property<Image> image = new SimpleObjectProperty<>(this, "image");
+    private final Property<Image> image = new SimpleObjectProperty<>(this, "image");
 
     public Bird() {
         image.bind(imagePath.map(path -> {
             var url = getClass().getResource("/ensisa/birds/assets/images/" + getImagePath()).toExternalForm();
-            return new Image(url.toString());
+            return new Image(url);
         }));
     }
 
@@ -114,9 +114,11 @@ public class Bird {
     public Image getImage() {
         return image.getValue();
     }
+
     public Property<Image> imageProperty() {
         return image;
     }
+
     public void setImage(Image image) {
         this.image.setValue(image);
     }

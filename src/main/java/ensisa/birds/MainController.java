@@ -20,7 +20,7 @@ import javafx.stage.Stage;
 import java.util.function.Predicate;
 
 public class MainController {
-    private BirdRepository repository;
+    private final BirdRepository repository;
 
     @FXML
     private Label commonNameLabel;
@@ -45,10 +45,12 @@ public class MainController {
     @FXML
     private Button deleteButton;
     private FilteredList<Bird> filteredBirdList;
+
     @FXML
     private void deleteButtonAction(ActionEvent event) {
         repository.birds.remove(getCurrentBird());
     }
+
     @FXML
     private void editButtonAction(ActionEvent event) {
         Node node = (Node) event.getSource();
@@ -56,6 +58,7 @@ public class MainController {
         BirdEditDialog dialog = new BirdEditDialog(stage, getCurrentBird());
         dialog.showAndWait().ifPresent(bird -> getCurrentBird().copyFrom(bird));
     }
+
     private final ObjectProperty<Bird> currentBird;
 
     @FXML
@@ -66,6 +69,7 @@ public class MainController {
         repository.Load();
         currentBird = new SimpleObjectProperty<>(repository.birds.get(0));
     }
+
     public void initialize() {
         birdListView.setCellFactory(new BirdCellFactory());
         filteredBirdList = new FilteredList<>(repository.birds);
@@ -73,8 +77,8 @@ public class MainController {
         currentBirdProperty().bind(birdListView.getSelectionModel().
                 selectedItemProperty());
         currentBirdProperty().addListener((observable, oldBird, newBird) -> {
-        // Pour une liaison unidirectionnelle, il n'est pas nécessaire de supprimer
-        // l'ancienne liaison avant d'en créer une nouvelle
+            // Pour une liaison unidirectionnelle, il n'est pas nécessaire de supprimer
+            // l'ancienne liaison avant d'en créer une nouvelle
             if (newBird != null)
                 bind(newBird);
         });
@@ -114,7 +118,6 @@ public class MainController {
         descriptionLabel.textProperty().bind(bird.descriptionProperty());
         birdImageView.imageProperty().bind(bird.imageProperty());
     }
-
 
 
 }

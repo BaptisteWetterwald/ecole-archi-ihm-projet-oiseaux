@@ -11,11 +11,10 @@ import javafx.util.Callback;
 
 import java.io.IOException;
 
-public class BirdCellFactory implements Callback<ListView<Bird>, ListCell<Bird>>
-{
+public class BirdCellFactory implements Callback<ListView<Bird>, ListCell<Bird>> {
     @Override
     public ListCell<Bird> call(ListView<Bird> param) {
-        return new ListCell<>(){
+        return new ListCell<>() {
             public void updateItem(Bird bird, boolean empty) {
                 super.updateItem(bird, empty);
                 if (empty || bird == null) {

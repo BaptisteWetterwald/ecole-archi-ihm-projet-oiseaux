@@ -1,10 +1,11 @@
 package ensisa.birds.model;
 
-import java.io.InputStream;
-
-import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
+import java.io.InputStream;
 
 public class BirdRepository {
     public ObservableList<Bird> birds;

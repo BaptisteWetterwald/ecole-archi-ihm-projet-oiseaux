@@ -8,12 +8,12 @@
     <children>
         <Label fx:id="commonNameLabel" text="Label">
             <font>
-                <Font size="14.0" />
+                <Font size="14.0"/>
             </font>
         </Label>
-        <Label fx:id="latinNameLabel" text="Label" textFill="#545454" />
+        <Label fx:id="latinNameLabel" text="Label" textFill="#545454"/>
     </children>
     <padding>
-        <Insets bottom="2.0" top="2.0" />
+        <Insets bottom="2.0" top="2.0"/>
     </padding>
 </VBox>

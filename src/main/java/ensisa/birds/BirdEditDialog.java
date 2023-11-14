@@ -15,9 +15,8 @@ public class BirdEditDialog extends Dialog<Bird> {
     @FXML
     private TextField nameTextField;
     @FXML
-    private TextArea descriptionTextArea
-            ;
-    private Bird editedBird;
+    private TextArea descriptionTextArea;
+    private final Bird editedBird;
 
     public BirdEditDialog(Window owner, Bird bird) {
         try {
@@ -33,7 +32,7 @@ public class BirdEditDialog extends Dialog<Bird> {
             setTitle("Edition de " + editedBird.getCommonName());
             setDialogPane(dialogPane);
             setResultConverter(buttonType -> {
-                if(!Objects.equals(ButtonBar.ButtonData.APPLY,
+                if (!Objects.equals(ButtonBar.ButtonData.APPLY,
                         buttonType.getButtonData())) {
                     return null;
                 }
@@ -41,11 +40,11 @@ public class BirdEditDialog extends Dialog<Bird> {
             });
             setOnShowing(dialogEvent -> Platform.runLater(
                     () -> nameTextField.requestFocus()));
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
+
     public void initialize() {
         nameTextField.textProperty().bindBidirectional(
                 editedBird.commonNameProperty());
